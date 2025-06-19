@@ -15,53 +15,55 @@ public:
     int amountOfTime(TreeNode* root, int start) {
         unordered_map<int, TreeNode*> parents;
         unordered_map<int, bool> visited;
-        TreeNode* startNode = traverse(root, start, parents);
+        queue<TreeNode*> q1;
+        TreeNode* startNode;
 
-        queue<pair<TreeNode*, int>> q;
-        q.push({startNode, 0});
+        q1.push(root);
+
+        while (!q1.empty()) {
+            TreeNode* front = q1.front();
+            q1.pop();
+
+            if (front->val == start) {
+                startNode = front;
+            }
+            if (front->left != NULL) {
+                parents[front->left->val] = front;
+                q1.push(front->left);
+            }
+            if (front->right != NULL) {
+                parents[front->right->val] = front;
+                q1.push(front->right);
+            }
+        }
+
+        queue<pair<TreeNode*, int>> q2;
+
+        q2.push({startNode, 0});
         visited[start] = true;
-        int mxTime = 0;
+        int time = 0;
 
-        while (!q.empty()) {
-            pair<TreeNode*, int> front = q.front();
-            q.pop();
+        while (!q2.empty()) {
+            TreeNode* node = q2.front().first;
+            int dist = q2.front().second;
+            q2.pop();
 
-            // cout<<front.first->val<<" "<<front.second<<endl;
+            time = dist;
 
-            mxTime = max(mxTime, front.second);
-
-            if (front.first->left != NULL && !visited[front.first->left->val]) {
-                q.push({front.first->left, front.second+1});
-                visited[front.first->left->val] = true;
+            if (node->left != NULL && !visited[node->left->val]) {
+                q2.push({node->left, dist+1});
+                visited[node->left->val] = true;
             }
-            if (front.first->right != NULL && !visited[front.first->right->val]) {
-                q.push({front.first->right, front.second+1});
-                visited[front.first->right->val] = true;
+            if (node->right != NULL && !visited[node->right->val]) {
+                q2.push({node->right, dist+1});
+                visited[node->right->val] = true;
             }
-            if (parents[front.first->val] != NULL && !visited[parents[front.first->val]->val]) {
-                q.push({parents[front.first->val], front.second+1});
-                visited[parents[front.first->val]->val] = true;
+            if (parents[node->val] != NULL && !visited[parents[node->val]->val]) {
+                q2.push({parents[node->val], dist+1});
+                visited[parents[node->val]->val] = true;
             }
         }
 
-        return mxTime;
-    }
-
-    TreeNode* traverse(TreeNode* root, int start, unordered_map<int, TreeNode*> &parents) {
-        TreeNode *onLeft = NULL, *onRight = NULL;
-
-        if (root->left != NULL) {
-            parents[root->left->val] = root;
-            onLeft = traverse(root->left, start, parents);
-        }
-        if (root->right != NULL) {
-            parents[root->right->val] = root;
-            onRight = traverse(root->right, start, parents);
-        }
-
-        if (onLeft != NULL) return onLeft;
-        if (onRight != NULL) return onRight;
-        if (root->val == start) return root;
-        return NULL;
+        return time;
     }
 };

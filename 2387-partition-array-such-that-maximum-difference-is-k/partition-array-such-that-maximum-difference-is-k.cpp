@@ -16,7 +16,3 @@ public:
         return n;
     }
 };
-
-
-
-

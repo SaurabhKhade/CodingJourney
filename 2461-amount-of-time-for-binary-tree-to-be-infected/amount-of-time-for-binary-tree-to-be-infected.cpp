@@ -26,7 +26,7 @@ public:
             pair<TreeNode*, int> front = q.front();
             q.pop();
 
-            cout<<front.first->val<<" "<<front.second<<endl;
+            // cout<<front.first->val<<" "<<front.second<<endl;
 
             mxTime = max(mxTime, front.second);
 

@@ -21,14 +21,14 @@ public:
             steps += data[0];
             x = data[1];
             y = data[2];
-            cout<<x<<" "<<y<<" "<<data[0]<<endl;
+            // cout<<x<<" "<<y<<" "<<data[0]<<endl;
         }
         
         return steps;
     }
 
     array<int, 3> bfs(vector<vector<int>>& forest, int x, int y, int target) {
-        cout<<"call: "<<x<<" "<<y<<" "<<target<<endl;
+        // cout<<"call: "<<x<<" "<<y<<" "<<target<<endl;
         queue<array<int, 3>> q;
         
         int m = forest.size(), n = forest[0].size();

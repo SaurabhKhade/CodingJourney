@@ -1,10 +1,13 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
+        if (s.empty() || t.empty() || s.length() < t.length()) {
+            return "";
+        }
+
         array<int, 58> map;
         for (const char &chr: t) map[chr-'A']--;
-        string mini = "";
-        int miniSize = INT_MAX;
+        int miniSize = INT_MAX, miniStart;
 
         for (int i=0,j=0; j<s.size(); j++) {
             map[s[j]-'A']++;
@@ -17,12 +20,12 @@ public:
 
                 if (j-i+2 < miniSize) {
                     miniSize = j-i+2;
-                    mini = s.substr(i-1, miniSize);
+                    miniStart = i-1;
                 }
             }
         }
 
-        return mini;
+        return miniSize == INT_MAX ? "" : s.substr(miniStart, miniSize);
     }
 
     bool isIncluded(array<int, 58> &arr) {

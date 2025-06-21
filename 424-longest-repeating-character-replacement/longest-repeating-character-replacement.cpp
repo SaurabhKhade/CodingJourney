@@ -11,17 +11,20 @@ public:
             sum++;
             mx = mx > map[s[j]-'A'] ? mx : map[s[j]-'A'];
 
-            if ((sum-mx) > k) {
-                while (isWindowReached(map, k)) {
-                    map[s[i]-'A']--;
-                    i++;
-                }
+            if((sum-mx) > k) {
+                map[s[i]-'A']--;
+                i++;
+                sum--;
 
-                sum = 0, mx = 0;
+                // while (isWindowReached(map, k)) {
+                //     map[s[i]-'A']--;
+                //     i++;
+                // }
+
+                // sum = 0, mx = 0;
 
                 for (int i:map) {
                     mx = mx > i ? mx : i;
-                    sum += i;
                 }
             }
 

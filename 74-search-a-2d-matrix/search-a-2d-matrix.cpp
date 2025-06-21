@@ -9,7 +9,7 @@ public:
 
             int x = mid/n, y = mid%n;
 
-            cout<<x<<" "<<y<<endl;
+            // cout<<x<<" "<<y<<endl;
 
             if (matrix[x][y] == target) return true;
             

@@ -15,14 +15,6 @@ public:
                 map[s[i]-'A']--;
                 i++;
                 sum--;
-
-                // while (isWindowReached(map, k)) {
-                //     map[s[i]-'A']--;
-                //     i++;
-                // }
-
-                // sum = 0, mx = 0;
-
                 for (int i:map) {
                     mx = mx > i ? mx : i;
                 }

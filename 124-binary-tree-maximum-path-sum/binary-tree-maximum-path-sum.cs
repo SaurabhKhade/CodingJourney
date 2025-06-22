@@ -22,22 +22,10 @@ public class Solution {
     private int Helper(TreeNode root) {
         if (root == null) return 0;
 
-        var left = Helper(root.left);
-        var right = Helper(root.right);
+        var left = Math.Max(Helper(root.left), 0);
+        var right = Math.Max(Helper(root.right), 0);
 
-        maxSum = Max(maxSum, root.val, left + root.val, right+root.val, left+right+root.val);
-        return Math.Max(left + root.val, Math.Max(right + root.val, root.val));
-    }
-
-    private int Max(int a, int b, int c, int d, int e) {
-        return Math.Max(
-            a, Math.Max(
-                b, Math.Max(
-                    c, Math.Max(
-                        d, e
-                    )
-                )
-            )
-        );
+        maxSum = Math.Max(maxSum, root.val + left + right);
+        return Math.Max(left, right) + root.val;
     }
 }

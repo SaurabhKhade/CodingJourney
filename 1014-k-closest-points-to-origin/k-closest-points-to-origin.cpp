@@ -18,7 +18,12 @@ public:
         // }
         // cout << endl;
 
-        points.resize(k);
-        return points;
+        vector<vector<int>> result(k);
+
+        for (int i=0; i<k; i++) {
+            result[i] = points[i];
+        }
+
+        return result;
     }
 };

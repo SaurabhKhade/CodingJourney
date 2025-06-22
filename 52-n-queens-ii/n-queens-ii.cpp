@@ -38,17 +38,17 @@ public:
             i--, j--;
         }
         
-        i=row+1, j=col+1;
-        while (i<n && j<n) {
-            if (board[i][j]) return false;
-            i++, j++;
-        }
+        // i=row+1, j=col+1;
+        // while (i<n && j<n) {
+        //     if (board[i][j]) return false;
+        //     i++, j++;
+        // }
 
-        i=row+1, j=col-1;
-        while (i<n && j>=0) {
-            if (board[i][j]) return false;
-            i++, j--;
-        }
+        // i=row+1, j=col-1;
+        // while (i<n && j>=0) {
+        //     if (board[i][j]) return false;
+        //     i++, j--;
+        // }
 
         i=row-1, j=col+1;
         while (i>=0 && j<n) {

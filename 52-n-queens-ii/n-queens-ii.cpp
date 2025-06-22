@@ -28,7 +28,7 @@ public:
             if (status) return false;
         }
 
-        for (int i=0; i<n; i++) {
+        for (int i=0; i<row; i++) {
             if (board[i][col]) return false;
         }
 
@@ -37,18 +37,6 @@ public:
             if (board[i][j]) return false;
             i--, j--;
         }
-        
-        // i=row+1, j=col+1;
-        // while (i<n && j<n) {
-        //     if (board[i][j]) return false;
-        //     i++, j++;
-        // }
-
-        // i=row+1, j=col-1;
-        // while (i<n && j>=0) {
-        //     if (board[i][j]) return false;
-        //     i++, j--;
-        // }
 
         i=row-1, j=col+1;
         while (i>=0 && j<n) {

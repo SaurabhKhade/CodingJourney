@@ -10,10 +10,11 @@
 
 public class Solution {
     public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if ((root.val >= p.val && root.val <= q.val) || (root.val <= p.val && root.val >= q.val)){
-            return root;
-        }
-        if (root.val > p.val) return LowestCommonAncestor(root.left, p, q);
-        return LowestCommonAncestor(root.right, p, q);
+        return Helper(root, Math.Min(p.val, q.val), Math.Max(p.val, q.val));
+    }
+
+    private TreeNode Helper(TreeNode root, int p, int q) {
+        if (p <= root.val && q >= root.val) return root;
+        return Helper(p < root.val ? root.left : root.right, p, q);
     }
 }

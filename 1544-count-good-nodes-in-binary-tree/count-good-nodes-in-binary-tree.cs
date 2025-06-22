@@ -12,19 +12,16 @@
  * }
  */
 public class Solution {
-    private int goodNodes;
     public int GoodNodes(TreeNode root) {
-        goodNodes = 0;
-        Helper(root, root.val);
-        return goodNodes;
+        return Helper(root, root.val);
     }
 
-    public void Helper(TreeNode root, int max) {
-        if (root == null) return;
+    public int Helper(TreeNode root, int max) {
+        if (root == null) return 0;
 
-        if (root.val >= max) goodNodes++;
+        return Helper(root.left, Math.Max(max, root.val)) +
+                Helper(root.right, Math.Max(max, root.val)) +
+                (root.val >= max ? 1 : 0);
 
-        Helper(root.left, Math.Max(max, root.val));
-        Helper(root.right, Math.Max(max, root.val));
     }
 }

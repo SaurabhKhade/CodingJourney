@@ -1,3 +1,5 @@
+const auto _ = std::cin.tie(nullptr)->sync_with_stdio(false);
+
 class Solution {
 public:
     long long maxScore(vector<int>& a, vector<int>& b) {

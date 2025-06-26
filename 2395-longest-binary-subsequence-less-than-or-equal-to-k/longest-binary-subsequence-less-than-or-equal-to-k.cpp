@@ -7,6 +7,9 @@ public:
             int bit = s[i] - '0';
             int position = s.size()-i-1;
             if (bit == 1 && position <= 30) {
+
+                // if (position > 30) continue;
+
                 int newNumber = (1 << position) + num;
 
                 if (newNumber <= k) {

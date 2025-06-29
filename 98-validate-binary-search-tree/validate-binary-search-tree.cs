@@ -12,8 +12,25 @@
  * }
  */
 public class Solution {
+    bool isValid = true;
+    int? prev = null;
+
     public bool IsValidBST(TreeNode root) {
-        return Helper(root).Item1;
+        if (root == null) return true;
+        if (!isValid) return false;
+
+        IsValidBST(root.left);
+
+        Console.WriteLine(root.val);
+
+        if (!isValid || (prev != null && root.val <= prev.Value)) {
+            isValid = false;
+            return false;
+        }
+
+        prev = root.val;
+
+        return IsValidBST(root.right);
     }
 
     private Tuple<bool, int?, int?> Helper(TreeNode root) {
@@ -21,11 +38,6 @@ public class Solution {
 
         var left = Helper(root.left);
         var right = Helper(root.right);
-
-        // Console.WriteLine(root.val.ToString());
-        // Console.WriteLine($"Left: {left.Item1}\t{left.Item2}\t{left.Item3}\t");
-        // Console.WriteLine($"Right: {right.Item1}\t{right.Item2}\t{right.Item3}\t");
-        // Console.WriteLine();
 
         if (
             !left.Item1 ||

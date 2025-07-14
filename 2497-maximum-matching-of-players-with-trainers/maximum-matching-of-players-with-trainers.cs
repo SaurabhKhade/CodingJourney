@@ -5,10 +5,10 @@ public class Solution {
         Array.Sort(trainers);
         
         foreach (int player in players) {
-            while (trainer < trainers.Count() && trainers[trainer] < player) {
+            while (trainer < trainers.Length && trainers[trainer] < player) {
                 trainer++;
             }
-            if (trainer == trainers.Count()) break;
+            if (trainer == trainers.Length) break;
             else {
                 matches++;
                 trainer++;

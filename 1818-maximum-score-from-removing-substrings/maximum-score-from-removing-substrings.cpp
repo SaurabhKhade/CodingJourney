@@ -1,3 +1,9 @@
+auto fastIO = []() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+};
+
 class Solution {
 public:
     int maximumGain(string s, int x, int y) {

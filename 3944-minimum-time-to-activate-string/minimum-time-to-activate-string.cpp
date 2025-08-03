@@ -1,27 +1,27 @@
 class Solution {
-    string construct(string s, vector<int> &order, int n) {
-        string ss = s;
-        for (int i=0; i<=n; i++) {
-            ss[order[i]] = '*';
-        }
+    // string construct(string s, vector<int> &order, int n) {
+    //     string ss = s;
+    //     for (int i=0; i<=n; i++) {
+    //         ss[order[i]] = '*';
+    //     }
 
-        return ss;
-    }
+    //     return ss;
+    // }
 
-    bool possible(string s, int k, long total) {
-        long subarrays = 0;
-        int i = 0, j = 0;
+    // bool possible(string s, int k, long total) {
+    //     long subarrays = 0;
+    //     int i = 0, j = 0;
 
-        while (j < s.size()) {
-            while (j < s.size() && s[j] != '*') {
-                j++;
-            }
-            subarrays += 1L * (j-i) * (j-i+1) / 2;
-            i = ++j;
-        }
+    //     while (j < s.size()) {
+    //         while (j < s.size() && s[j] != '*') {
+    //             j++;
+    //         }
+    //         subarrays += 1L * (j-i) * (j-i+1) / 2;
+    //         i = ++j;
+    //     }
         
-        return (total-subarrays) >= k;
-    }
+    //     return (total-subarrays) >= k;
+    // }
 public:
     int minTime(string s, vector<int>& order, int k) {
         int n = s.size();
@@ -29,6 +29,30 @@ public:
         if (k > total) return -1;
         int i = 0, j = n-1;
         int res = -1;
+
+        auto construct = [&](string s, vector<int> &order, int n) -> string {
+            string ss = s;
+            for (int i=0; i<=n; i++) {
+                ss[order[i]] = '*';
+            }
+
+            return ss;
+        };
+
+        auto possible = [&](string s, int k, long total) -> bool {
+            long subarrays = 0;
+            int i = 0, j = 0;
+
+            while (j < s.size()) {
+                while (j < s.size() && s[j] != '*') {
+                    j++;
+                }
+                subarrays += 1L * (j-i) * (j-i+1) / 2;
+                i = ++j;
+            }
+            
+            return (total-subarrays) >= k;
+        };
 
         while (i <= j) {
             int mid = (i+j)/2;

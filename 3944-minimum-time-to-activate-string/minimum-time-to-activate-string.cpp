@@ -1,7 +1,3 @@
-class SegmentNode {
-
-};
-
 class Solution {
     string construct(string s, vector<int> &order, int n) {
         string ss = s;
@@ -23,8 +19,6 @@ class Solution {
             subarrays += 1L * (j-i) * (j-i+1) / 2;
             i = ++j;
         }
-
-        // cout<<s<<" "<<subarrays<<" "<<total<<endl;
         
         return (total-subarrays) >= k;
     }

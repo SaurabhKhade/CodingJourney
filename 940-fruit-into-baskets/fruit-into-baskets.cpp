@@ -2,19 +2,19 @@ class Solution {
 public:
     int totalFruit(vector<int>& fruits) {
         int distFruits = 0;
-        unordered_map<int, int> map;
+        vector<int> vec(1e5);
         int i=0, j = 0, mx = 0;
 
         while (j < fruits.size()) {
-            map[fruits[j]]++;
-            if (map[fruits[j]] == 1) {
+            vec[fruits[j]]++;
+            if (vec[fruits[j]] == 1) {
                 distFruits++;
             }
             j++;
 
             while (distFruits > 2) {
-                map[fruits[i]]--;
-                if (map[fruits[i]] == 0) {
+                vec[fruits[i]]--;
+                if (vec[fruits[i]] == 0) {
                     distFruits--;
                 }
                 i++;

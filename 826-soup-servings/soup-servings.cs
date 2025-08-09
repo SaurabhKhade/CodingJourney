@@ -22,7 +22,7 @@ public class Solution {
     }
 
     public double SoupServings(int n) {
-        if (n > 1e4) return 1;
+        if (n > 4900) return 1;
 
         var dict = new Dictionary<int, IDictionary<int, double>>();
         return Helper(n, n, dict);

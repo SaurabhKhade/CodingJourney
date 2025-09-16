@@ -13,7 +13,6 @@ public:
             st.push_back(i);
         }
 
-        // reverse(st.begin(), st.end());
         return st;
     }
 };

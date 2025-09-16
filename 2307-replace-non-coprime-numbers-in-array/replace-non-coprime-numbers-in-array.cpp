@@ -2,10 +2,11 @@ class Solution {
 public:
     vector<int> replaceNonCoprimes(vector<int>& nums) {
         stack<int> st;
+        int gcdd;
 
         for (long i: nums) {
-            while (!st.empty() && gcd(st.top(), i) > 1) {
-                i = lcm(st.top(), i);
+            while (!st.empty() && (gcdd = gcd(st.top(), i)) > 1) {
+                i = i * st.top() / gcdd;
                 st.pop();
             }
 

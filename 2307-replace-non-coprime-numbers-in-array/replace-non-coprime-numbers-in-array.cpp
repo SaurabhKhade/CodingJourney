@@ -1,28 +1,19 @@
 class Solution {
 public:
     vector<int> replaceNonCoprimes(vector<int>& nums) {
-        stack<int> st;
+        vector<int> st;
         int gcdd;
 
         for (long i: nums) {
-            while (!st.empty() && (gcdd = gcd(st.top(), i)) > 1) {
-                i = i * st.top() / gcdd;
-                st.pop();
+            while (!st.empty() && (gcdd = gcd(st.back(), i)) > 1) {
+                i = i * st.back() / gcdd;
+                st.pop_back();
             }
 
-            st.push(i);
+            st.push_back(i);
         }
 
-        vector<int> res;
-        while (!st.empty()) {
-            res.push_back(st.top());
-            st.pop();
-        }
-
-        reverse(res.begin(), res.end());
-        return res;
+        // reverse(st.begin(), st.end());
+        return st;
     }
 };
-
-// 2009 899 20677 825
-

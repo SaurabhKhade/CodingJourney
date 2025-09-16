@@ -4,9 +4,9 @@ public:
         vector<int> st;
         int gcdd;
 
-        for (long i: nums) {
+        for (int i: nums) {
             while (!st.empty() && (gcdd = gcd(st.back(), i)) > 1) {
-                i = i * st.back() / gcdd;
+                i = i / gcdd * st.back();
                 st.pop_back();
             }
 

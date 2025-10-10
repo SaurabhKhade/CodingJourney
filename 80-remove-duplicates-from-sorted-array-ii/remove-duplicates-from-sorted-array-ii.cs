@@ -4,13 +4,11 @@ public class Solution {
 
         int i = 2, j = 2;
         while (j < nums.Length) {
-            if (nums[j] == nums[i-1] && nums[j] == nums[i-2]) {
-                j++;
-            }
-            else {
+            if (nums[j] != nums[i-2]) {
                 nums[i] = nums[j];
-                i++; j++;
+                i++;
             }
+            j++;
         }
 
         return i;

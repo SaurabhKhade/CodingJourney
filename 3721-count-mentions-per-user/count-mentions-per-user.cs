@@ -8,7 +8,7 @@ public class Solution {
 
         foreach (var ev in events) {
             var timestamp = int.Parse(ev[1]);
-            Console.WriteLine(timestamp);
+            // Console.WriteLine(timestamp);
             if (ev[0] == "OFFLINE") {
                 var user = int.Parse(ev[2]);
                 offlineTill[user] = timestamp + 60;

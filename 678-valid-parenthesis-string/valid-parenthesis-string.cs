@@ -1,35 +1,36 @@
 public class Solution {
     public bool CheckValidString(string s) {
-        int stars = 0, open = 0;
-        for (int i = 0; i<s.Length; i++) {
-            if (s[i] == '*') stars++;
-            else if (s[i] == '(') open++;
+        Stack<int> stars = new Stack<int>(), opens = new Stack<int>();
+
+        for (int i=0; i<s.Length; i++) {
+            if (s[i] == '(') {
+                opens.Push(i);
+            }
+            else if (s[i] == '*') {
+                stars.Push(i);
+            }
+            else if (opens.Count > 0) {
+                opens.Pop();
+            }
+            else if (stars.Count > 0) {
+                stars.Pop();
+            }
             else {
-                open--;
-                if (open < 0 && stars == 0) return false;
-                if (open < 0) {
-                    open = 0;
-                    stars--;
-                }
+                return false;
             }
         }
 
-        stars = 0;
-        open = 0;
-        
-        for (int i = s.Length - 1; i>=0; i--) {
-            if (s[i] == '*') stars++;
-            else if (s[i] == ')') open++;
-            else {
-                open--;
-                if (open < 0 && stars == 0) return false;
-                if (open < 0) {
-                    open = 0;
-                    stars--;
-                }
+        while (opens.Count > 0) {
+            if (stars.Count == 0 || stars.Peek() < opens.Peek()) {
+                return false;
             }
+
+            stars.Pop();
+            opens.Pop();
         }
 
         return true;
     }
 }
+
+
